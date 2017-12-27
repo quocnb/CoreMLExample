@@ -9,5 +9,13 @@
 import UIKit
 
 struct FaceDimensions {
-    let boundRect: CGRect
+    var boundRect: CGRect
+    var leftEye: [CGPoint]?
+    var rightEye: [CGPoint]?
+    
+    init(boundRect: CGRect, leftEye: [CGPoint]?, rightEye: [CGPoint]?) {
+        self.boundRect = boundRect
+        self.leftEye = leftEye
+        self.rightEye = rightEye
+    }
 }

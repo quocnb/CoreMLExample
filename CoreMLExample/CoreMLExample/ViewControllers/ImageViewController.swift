@@ -32,12 +32,21 @@ class ImageViewController: UIViewController {
         setupFaceDetect(image: self.image)
     }
 
-    func setupFaceDetect(image: UIImage) {
+    func setupFaceDetect(image: UIImage, isLandmarkDetect: Bool = true) {
         guard let cgImage = image.cgImage else {
             return
         }
         let orientation = CGImagePropertyOrientation(image.imageOrientation)
-        let faceRequest = VNDetectFaceRectanglesRequest(completionHandler: handleFace)
+        var faceRequest: VNImageBasedRequest!
+        if isLandmarkDetect {
+            faceRequest = VNDetectFaceLandmarksRequest(completionHandler: { (request, error) in
+                self.handleFace(request: request, error: error, isLandmarkDetect: true)
+            })
+        } else {
+            faceRequest = VNDetectFaceRectanglesRequest(completionHandler: { (request, error) in
+                self.handleFace(request: request, error: error, isLandmarkDetect: false)
+            })
+        }
         let handleRequest = VNImageRequestHandler(cgImage: cgImage, orientation: orientation, options: [:])
         DispatchQueue.global(qos: .userInteractive).async {
             do {

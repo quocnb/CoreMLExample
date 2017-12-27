@@ -9,7 +9,8 @@
 import UIKit
 
 class AnnotationView: UIView {
-
+    let hat = #imageLiteral(resourceName: "hat")
+    let glasses = #imageLiteral(resourceName: "glasses")
     @IBInspectable
     var color: UIColor = .orange {
         didSet {
@@ -27,6 +28,7 @@ class AnnotationView: UIView {
         faces.forEach { (faceDimension) in
             self.drawBound(faceRect: faceDimension.boundRect)
             self.drawHat(faceRect: faceDimension.boundRect)
+            self.drawGlasses(left: faceDimension.leftEye, right: faceDimension.rightEye)
         }
     }
 
@@ -34,10 +36,10 @@ class AnnotationView: UIView {
         let path = UIBezierPath(rect: faceRect)
         self.color.setStroke()
         path.stroke()
+        self.setNeedsDisplay()
     }
 
     private func drawHat(faceRect: CGRect) {
-        let hat = #imageLiteral(resourceName: "hat")
         let hatSize = hat.size
         let headSize = faceRect.size
         let newHatWidth = 1.5 * headSize.width
@@ -51,6 +53,26 @@ class AnnotationView: UIView {
                              width: adjustHatsize.width,
                              height: adjustHatsize.height)
         hat.draw(in: hatRect)
+        self.setNeedsDisplay()
+    }
+
+    private func drawGlasses(left: [CGPoint]?, right: [CGPoint]?) {
+        guard let left = left, let right = right else {
+            return
+        }
+        let total = left + right
+        let minX = total.reduce(CGFloat.infinity) { min($0, $1.x) }
+        let minY = total.reduce(CGFloat.infinity) { min($0, $1.y) }
+        let maxX = total.reduce(0) { max($0, $1.x) }
+        let maxY = total.reduce(0) { max($0, $1.y) }
+        let width = max(maxX - minX, 16.0)
+        let x = (maxX - minX) / 2.0 + minX - width / 2.0
+        let height = max(maxY - minY, 8.0)
+        let y = (maxY - minY) / 2.0 + minY - height / 2.0
+        let eyesRect = CGRect(x: x, y: y,
+                              width: width, height: height)
+        glasses.draw(in: eyesRect)
+        self.setNeedsDisplay()
     }
 
 }
