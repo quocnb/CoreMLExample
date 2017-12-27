@@ -16,6 +16,11 @@
 		798CDE371FF35DEB00F128EB /* PicturesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798CDE2D1FF35DEA00F128EB /* PicturesCollectionViewController.swift */; };
 		798CDE3B1FF35DEB00F128EB /* PictureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798CDE311FF35DEB00F128EB /* PictureCollectionViewCell.swift */; };
 		798CDE3C1FF35DEB00F128EB /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798CDE321FF35DEB00F128EB /* ImageViewController.swift */; };
+		798CDE411FF3695F00F128EB /* CGImagePropertyOrientationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798CDE401FF3695F00F128EB /* CGImagePropertyOrientationExtension.swift */; };
+		798CDE441FF36AF800F128EB /* ImageViewController+HandlerFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798CDE431FF36AF800F128EB /* ImageViewController+HandlerFace.swift */; };
+		798CDE461FF36C0D00F128EB /* FaceDimensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798CDE451FF36C0D00F128EB /* FaceDimensions.swift */; };
+		798CDE491FF36E8C00F128EB /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798CDE481FF36E8C00F128EB /* AnnotationView.swift */; };
+		798CDE4B1FF370EB00F128EB /* CGRectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798CDE4A1FF370EB00F128EB /* CGRectExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +35,11 @@
 		798CDE2D1FF35DEA00F128EB /* PicturesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PicturesCollectionViewController.swift; sourceTree = "<group>"; };
 		798CDE311FF35DEB00F128EB /* PictureCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureCollectionViewCell.swift; sourceTree = "<group>"; };
 		798CDE321FF35DEB00F128EB /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
+		798CDE401FF3695F00F128EB /* CGImagePropertyOrientationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGImagePropertyOrientationExtension.swift; sourceTree = "<group>"; };
+		798CDE431FF36AF800F128EB /* ImageViewController+HandlerFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageViewController+HandlerFace.swift"; sourceTree = "<group>"; };
+		798CDE451FF36C0D00F128EB /* FaceDimensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDimensions.swift; sourceTree = "<group>"; };
+		798CDE481FF36E8C00F128EB /* AnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
+		798CDE4A1FF370EB00F128EB /* CGRectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGRectExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,13 +72,15 @@
 		798CDE0F1FF35A9C00F128EB /* CoreMLExample */ = {
 			isa = PBXGroup;
 			children = (
-				798CDE291FF35DEA00F128EB /* images */,
+				798CDE471FF36C1300F128EB /* Data */,
+				798CDE421FF3696300F128EB /* Utilities */,
 				798CDE3D1FF3631800F128EB /* ViewControllers */,
 				798CDE3E1FF3632300F128EB /* Views */,
 				798CDE3F1FF3632E00F128EB /* Storyboards */,
 				798CDE101FF35A9C00F128EB /* AppDelegate.swift */,
 				798CDE171FF35A9C00F128EB /* Assets.xcassets */,
 				798CDE1C1FF35A9C00F128EB /* Info.plist */,
+				798CDE291FF35DEA00F128EB /* images */,
 			);
 			path = CoreMLExample;
 			sourceTree = "<group>";
@@ -85,6 +97,7 @@
 		798CDE3D1FF3631800F128EB /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				798CDE431FF36AF800F128EB /* ImageViewController+HandlerFace.swift */,
 				798CDE321FF35DEB00F128EB /* ImageViewController.swift */,
 				798CDE2D1FF35DEA00F128EB /* PicturesCollectionViewController.swift */,
 			);
@@ -95,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				798CDE311FF35DEB00F128EB /* PictureCollectionViewCell.swift */,
+				798CDE481FF36E8C00F128EB /* AnnotationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -106,6 +120,23 @@
 				798CDE191FF35A9C00F128EB /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		798CDE421FF3696300F128EB /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				798CDE401FF3695F00F128EB /* CGImagePropertyOrientationExtension.swift */,
+				798CDE4A1FF370EB00F128EB /* CGRectExtension.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		798CDE471FF36C1300F128EB /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				798CDE451FF36C0D00F128EB /* FaceDimensions.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -184,7 +215,12 @@
 			files = (
 				798CDE3B1FF35DEB00F128EB /* PictureCollectionViewCell.swift in Sources */,
 				798CDE371FF35DEB00F128EB /* PicturesCollectionViewController.swift in Sources */,
+				798CDE411FF3695F00F128EB /* CGImagePropertyOrientationExtension.swift in Sources */,
+				798CDE461FF36C0D00F128EB /* FaceDimensions.swift in Sources */,
 				798CDE111FF35A9C00F128EB /* AppDelegate.swift in Sources */,
+				798CDE491FF36E8C00F128EB /* AnnotationView.swift in Sources */,
+				798CDE4B1FF370EB00F128EB /* CGRectExtension.swift in Sources */,
+				798CDE441FF36AF800F128EB /* ImageViewController+HandlerFace.swift in Sources */,
 				798CDE3C1FF35DEB00F128EB /* ImageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
