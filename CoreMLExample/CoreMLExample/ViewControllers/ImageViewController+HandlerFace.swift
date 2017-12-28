@@ -45,6 +45,7 @@ extension ImageViewController {
             let rightEyes = compute(feature: face.landmarks?.rightEye, faceBox: facebox)
             return FaceDimensions(boundRect: facebox, leftEye: leftEyes, rightEye: rightEyes)
         }
+        print("Detect time = \(time?.timeIntervalSinceNow)")
         self.annotationView.faces = faceDimensions
     }
 

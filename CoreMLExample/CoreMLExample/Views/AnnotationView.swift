@@ -11,6 +11,7 @@ import UIKit
 class AnnotationView: UIView {
     let hat = #imageLiteral(resourceName: "hat")
     let glasses = #imageLiteral(resourceName: "glasses")
+    
     @IBInspectable
     var color: UIColor = .orange {
         didSet {
@@ -29,6 +30,7 @@ class AnnotationView: UIView {
             self.drawBound(faceRect: faceDimension.boundRect)
             self.drawHat(faceRect: faceDimension.boundRect)
             self.drawGlasses(left: faceDimension.leftEye, right: faceDimension.rightEye)
+            self.isHidden = false
         }
     }
 
@@ -36,7 +38,9 @@ class AnnotationView: UIView {
         let path = UIBezierPath(rect: faceRect)
         self.color.setStroke()
         path.stroke()
-        self.setNeedsDisplay()
+        DispatchQueue.main.async {
+            self.setNeedsLayout()
+        }
     }
 
     private func drawHat(faceRect: CGRect) {
@@ -53,7 +57,9 @@ class AnnotationView: UIView {
                              width: adjustHatsize.width,
                              height: adjustHatsize.height)
         hat.draw(in: hatRect)
-        self.setNeedsDisplay()
+        DispatchQueue.main.async {
+            self.setNeedsLayout()
+        }
     }
 
     private func drawGlasses(left: [CGPoint]?, right: [CGPoint]?) {
@@ -72,7 +78,9 @@ class AnnotationView: UIView {
         let eyesRect = CGRect(x: x, y: y,
                               width: width, height: height)
         glasses.draw(in: eyesRect)
-        self.setNeedsDisplay()
+        DispatchQueue.main.async {
+            self.setNeedsLayout()
+        }
     }
 
 }

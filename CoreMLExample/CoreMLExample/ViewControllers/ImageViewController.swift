@@ -14,21 +14,22 @@ class ImageViewController: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var annotationView: AnnotationView!
-    
-    var image: UIImage! {
-        didSet {
-            imageView?.image = image
-        }
-    }
+    var time: Date?
+    var image: UIImage!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .never
-        imageView.image = image
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+    }
+
+    override func viewDidLayoutSubviews() {
+        self.image = self.image.bestScale(in: self.imageView.bounds.size)
+        self.imageView.image = self.image
+        self.annotationView.isHidden = true
         setupFaceDetect(image: self.image)
     }
 
@@ -36,6 +37,7 @@ class ImageViewController: UIViewController {
         guard let cgImage = image.cgImage else {
             return
         }
+        time = Date()
         let orientation = CGImagePropertyOrientation(image.imageOrientation)
         var faceRequest: VNImageBasedRequest!
         if isLandmarkDetect {

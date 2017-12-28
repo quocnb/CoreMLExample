@@ -54,8 +54,7 @@ extension PicturesCollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! PictureCollectionViewCell
-        cell.imageView.image = images[indexPath.row]
-
+        cell.imageView.image = images[indexPath.row].bestScale(in: cell.imageView.bounds.size)
         return cell
     }
 }
