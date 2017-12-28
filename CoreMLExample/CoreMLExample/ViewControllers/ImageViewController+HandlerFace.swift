@@ -19,6 +19,17 @@ extension ImageViewController {
         }
     }
 
+    func handleScene(request: VNRequest, error: Error?) {
+        guard let sceneClassifier = request.results?.first as? VNClassificationObservation else {
+            return
+        }
+        DispatchQueue.main.async {
+            let scene = SceneType(classification: sceneClassifier.identifier)
+            self.annotationView.classification = scene
+            print("Scene: '\(sceneClassifier.identifier) \(sceneClassifier.confidence)%")
+        }
+    }
+
     private func handlerFaces(faces: [VNFaceObservation], isLandmarkDetect: Bool = true) {
         let viewSize = imageView.bounds.size
         let imageSize = image.size
@@ -45,7 +56,6 @@ extension ImageViewController {
             let rightEyes = compute(feature: face.landmarks?.rightEye, faceBox: facebox)
             return FaceDimensions(boundRect: facebox, leftEye: leftEyes, rightEye: rightEyes)
         }
-        print("Detect time = \(time?.timeIntervalSinceNow)")
         self.annotationView.faces = faceDimensions
     }
 

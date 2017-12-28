@@ -14,7 +14,6 @@ class ImageViewController: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var annotationView: AnnotationView!
-    var time: Date?
     var image: UIImage!
 
     override func viewDidLoad() {
@@ -30,32 +29,49 @@ class ImageViewController: UIViewController {
         self.image = self.image.bestScale(in: self.imageView.bounds.size)
         self.imageView.image = self.image
         self.annotationView.isHidden = true
-        setupFaceDetect(image: self.image)
+        detectImage()
     }
 
-    func setupFaceDetect(image: UIImage, isLandmarkDetect: Bool = true) {
+    func detectImage() {
         guard let cgImage = image.cgImage else {
             return
         }
-        time = Date()
-        let orientation = CGImagePropertyOrientation(image.imageOrientation)
-        var faceRequest: VNImageBasedRequest!
-        if isLandmarkDetect {
-            faceRequest = VNDetectFaceLandmarksRequest(completionHandler: { (request, error) in
-                self.handleFace(request: request, error: error, isLandmarkDetect: true)
-            })
-        } else {
-            faceRequest = VNDetectFaceRectanglesRequest(completionHandler: { (request, error) in
-                self.handleFace(request: request, error: error, isLandmarkDetect: false)
-            })
+        var requests: [VNRequest] = [faceDetectRequest()]
+        if let sceneRequest = sceneDetectRequest() {
+            requests.append(sceneRequest)
         }
+
+        let orientation = CGImagePropertyOrientation(image.imageOrientation)
         let handleRequest = VNImageRequestHandler(cgImage: cgImage, orientation: orientation, options: [:])
         DispatchQueue.global(qos: .userInteractive).async {
             do {
-                try handleRequest.perform([faceRequest])
+                try handleRequest.perform(requests)
             } catch {
                 print("Error handling vision request \(error)")
             }
+        }
+    }
+
+    func sceneDetectRequest() -> VNRequest? {
+        let ggNetPlace = GoogLeNetPlaces()
+        do {
+            let model = try VNCoreMLModel(for: ggNetPlace.model)
+            let request = VNCoreMLRequest(model: model, completionHandler: handleScene)
+            return request
+        } catch {
+            return nil
+        }
+    }
+
+    func faceDetectRequest(isLandmarkDetect: Bool = true) -> VNRequest {
+        if isLandmarkDetect {
+            return VNDetectFaceLandmarksRequest(completionHandler: { (request, error) in
+                self.handleFace(request: request, error: error, isLandmarkDetect: true)
+            })
+        } else {
+            return VNDetectFaceRectanglesRequest(completionHandler: { (request, error) in
+                self.handleFace(request: request, error: error, isLandmarkDetect: false)
+            })
         }
     }
 

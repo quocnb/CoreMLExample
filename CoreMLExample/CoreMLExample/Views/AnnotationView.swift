@@ -25,9 +25,15 @@ class AnnotationView: UIView {
         }
     }
 
+    var classification: SceneType = .other {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+
     override func draw(_ rect: CGRect) {
         faces.forEach { (faceDimension) in
-            self.drawBound(faceRect: faceDimension.boundRect)
+//            self.drawBound(faceRect: faceDimension.boundRect)
             self.drawHat(faceRect: faceDimension.boundRect)
             self.drawGlasses(left: faceDimension.leftEye, right: faceDimension.rightEye)
             self.isHidden = false
@@ -44,6 +50,9 @@ class AnnotationView: UIView {
     }
 
     private func drawHat(faceRect: CGRect) {
+        guard classification == .forest else {
+            return
+        }
         let hatSize = hat.size
         let headSize = faceRect.size
         let newHatWidth = 1.5 * headSize.width
@@ -63,6 +72,9 @@ class AnnotationView: UIView {
     }
 
     private func drawGlasses(left: [CGPoint]?, right: [CGPoint]?) {
+        guard classification == .beach else {
+            return
+        }
         guard let left = left, let right = right else {
             return
         }

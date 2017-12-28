@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		790387091FF46D41002C1CEF /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790387081FF46D41002C1CEF /* UIImageExtension.swift */; };
+		7903870B1FF47738002C1CEF /* GoogLeNetPlaces.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7903870A1FF47737002C1CEF /* GoogLeNetPlaces.mlmodel */; };
+		7903870D1FF482C1002C1CEF /* SceneClassification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7903870C1FF482C1002C1CEF /* SceneClassification.swift */; };
 		798CDE111FF35A9C00F128EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798CDE101FF35A9C00F128EB /* AppDelegate.swift */; };
 		798CDE161FF35A9C00F128EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 798CDE141FF35A9C00F128EB /* Main.storyboard */; };
 		798CDE181FF35A9C00F128EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 798CDE171FF35A9C00F128EB /* Assets.xcassets */; };
@@ -26,6 +28,8 @@
 
 /* Begin PBXFileReference section */
 		790387081FF46D41002C1CEF /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		7903870A1FF47737002C1CEF /* GoogLeNetPlaces.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = GoogLeNetPlaces.mlmodel; sourceTree = "<group>"; };
+		7903870C1FF482C1002C1CEF /* SceneClassification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneClassification.swift; sourceTree = "<group>"; };
 		798CDE0D1FF35A9C00F128EB /* CoreMLExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreMLExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		798CDE101FF35A9C00F128EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		798CDE151FF35A9C00F128EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -80,6 +84,7 @@
 				798CDE3E1FF3632300F128EB /* Views */,
 				798CDE3F1FF3632E00F128EB /* Storyboards */,
 				798CDE101FF35A9C00F128EB /* AppDelegate.swift */,
+				7903870A1FF47737002C1CEF /* GoogLeNetPlaces.mlmodel */,
 				798CDE171FF35A9C00F128EB /* Assets.xcassets */,
 				798CDE1C1FF35A9C00F128EB /* Info.plist */,
 				798CDE291FF35DEA00F128EB /* images */,
@@ -138,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				798CDE451FF36C0D00F128EB /* FaceDimensions.swift */,
+				7903870C1FF482C1002C1CEF /* SceneClassification.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -218,9 +224,11 @@
 			files = (
 				798CDE3B1FF35DEB00F128EB /* PictureCollectionViewCell.swift in Sources */,
 				798CDE371FF35DEB00F128EB /* PicturesCollectionViewController.swift in Sources */,
+				7903870D1FF482C1002C1CEF /* SceneClassification.swift in Sources */,
 				798CDE411FF3695F00F128EB /* CGImagePropertyOrientationExtension.swift in Sources */,
 				790387091FF46D41002C1CEF /* UIImageExtension.swift in Sources */,
 				798CDE461FF36C0D00F128EB /* FaceDimensions.swift in Sources */,
+				7903870B1FF47738002C1CEF /* GoogLeNetPlaces.mlmodel in Sources */,
 				798CDE111FF35A9C00F128EB /* AppDelegate.swift in Sources */,
 				798CDE491FF36E8C00F128EB /* AnnotationView.swift in Sources */,
 				798CDE4B1FF370EB00F128EB /* CGRectExtension.swift in Sources */,
